@@ -71,13 +71,16 @@ function purchaseFunction() {
 
                                         console.log ("Your item number was " + itemID);
                                         console.log ("Your quantity was " + productQuantity);
-                                        console.log ("_________---_________");
-                                        console.log(rdp);
-                                        console.log ("_________---_________");
-                                        console.log(answer);
-                                        console.log("**********");
-                                        console.log(rdp[1].item_id);
-                                        
+                                        // console.log ("_________---_________");
+                                        // console.log(rdp);
+                                        // console.log ("_________---_________");
+                                        // console.log(answer);
+                                        // console.log("**********");
+                                        // console.log(rdp[1].item_id);
+                                        // if (itemID !== 10001 || itemID !== 10002 || itemID !== 10003 || itemID !== 10004 || itemID !== 10005 || itemID !== 10006 || itemID !== 10007 || itemID !== 10008 || itemID !== 10009 || itemID !== 10010){
+                                        //     console.log("We're sorry, our systems do not recognize this ID or we do not have any left in stock.");
+                                        //     console.log("Please try again.");
+                                        // }
 
 
 
@@ -95,16 +98,26 @@ function purchaseFunction() {
                                                 if (rdp[i].stock_quantity < productQuantity) 
                                                 {
                                                     console.log("However we don't have that many in stock.");
-                    
+                                                    console.log("");
+                                                    console.log("");
+                                                    console.log("");
+                                                    console.log("");
+                                                    console.log("");
+                                                    console.log("");
+                                                    console.log("");
 
                                                     start();
                                                 
                                                 } 
                                                     else 
                                                     {
+                                                    var amount = rdp[i].price * productQuantity;
+                                                    console.log ("You have been charged:");
+                                                    console.log ("$"+ amount);
                                                     console.log ("Your order has been fulfilled:");
+                                                    
                                                     console.log ("Estimated Arrival Time: 6 - 8 Weeks");
-                              
+                                                        
                                                     }
                                             } else {}
                                         }

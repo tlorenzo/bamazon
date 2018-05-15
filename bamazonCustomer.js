@@ -38,31 +38,83 @@ function start() {
 
 
 function purchaseFunction() {
+    var selectFrom = "SELECT * FROM bamazon.products";
 
-    inquirer.prompt([
+    connection.query
+    (
+        selectFrom, function (err, rdp)
         {
-          name: "id",
-          type: "input",
-          message: "Enter the Item ID of the product you are interested in."
-        
-        },
-        
-        {
-          name: "quantity",
-          type: "input",
-          message: "How many units of the product would you like to buy?"
-        }
+            if (err) throw err;
 
-      ]).then(function(answer){
-       var itemID = answer.id;
-       var productQuantity = answer.quantity;
-       var selectFrom = 'SELECT * FROM products WHERE ?';
-    console.log ("Your answer was " + itemID);
-    console.log ("Your quantity was " + productQuantity);
+                    inquirer.prompt([
+                        {
+                        name: "id",
+                        type: "input",
+                        message: "Enter the Item ID of the product you are interested in.\n"
+                        
+                        },
+                        
+                        {
+                        name: "quantity",
+                        type: "input",
+                        message: "How many units of the product would you like to buy?\n"
+                        }
+
+                    ]).then(function(answer)
+                    
+                                    {
+                                        var itemID = answer.id;
+                
+                                        var productQuantity = answer.quantity;
+                                        //    var selectFrom = 'SELECT * FROM products WHERE ?';
+                                        //    var selectFrom2 = 'SELECT stock_quantity, price FROM products WHERE ?';
+
+                                        console.log ("Your item number was " + itemID);
+                                        console.log ("Your quantity was " + productQuantity);
+                                        console.log ("_________---_________");
+                                        console.log(rdp);
+                                        console.log ("_________---_________");
+                                        console.log(answer);
+                                        console.log("**********");
+                                        console.log(rdp[1].item_id);
+                                        
+
+
+
+                                        for (var i = 0; i < rdp.length; i++) 
+                                        {
+                                            if (answer.id == rdp[i].item_id) 
+                                            {
+                                    
+                                                console.log("You have chosen:");
+                                                console.log(rdp[i].product_name);
+                                                console.log("Great choice.");
+
+                                        
+                                     
+                                                if (rdp[i].stock_quantity < productQuantity) 
+                                                {
+                                                    console.log("However we don't have that many in stock.");
+                    
+
+                                                    start();
+                                                
+                                                } 
+                                                    else 
+                                                    {
+                                                    console.log ("Your order has been fulfilled:");
+                                                    console.log ("Estimated Arrival Time: 6 - 8 Weeks");
+                              
+                                                    }
+                                            } else {}
+                                        }
+                                        
+                                    
+
+                                    }
+                            )
     
-
-
-    })
-
+        }
+    )
 
 }
